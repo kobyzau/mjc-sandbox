@@ -7,7 +7,6 @@ import com.epam.mjc.sandbox.util.StringUtil;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Random;
 import javax.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -49,10 +48,11 @@ public class RandomMessageUpdateHandler extends CallbackUpdateHandler<RandomMess
 
   @Override
   protected void handleCallback(Update update, RandomMessageDto dto) throws TelegramApiException {
-    Random random = new Random();
+    int id = dto.getId();
+    int nextId = id == (textList.size() - 1) ? 0 : id + 1;
     bot.execute(
         EditMessageText.builder()
-            .text(textList.get(Math.abs(random.nextInt()) % textList.size()))
+            .text(textList.get(id))
             .messageId(update.getCallbackQuery().getMessage().getMessageId())
             .chatId(update.getCallbackQuery().getMessage().getChatId().toString())
             .replyMarkup(
@@ -61,7 +61,7 @@ public class RandomMessageUpdateHandler extends CallbackUpdateHandler<RandomMess
                         Collections.singletonList(
                             InlineKeyboardButton.builder()
                                 .text("Next")
-                                .callbackData(StringUtil.serialize(new RandomMessageDto()))
+                                .callbackData(StringUtil.serialize(new RandomMessageDto(nextId)))
                                 .build()))
                     .build())
             .build());

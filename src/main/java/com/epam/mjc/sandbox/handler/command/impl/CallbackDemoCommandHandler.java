@@ -53,7 +53,7 @@ public class CallbackDemoCommandHandler implements CommandHandler {
         Collections.singletonList(
             InlineKeyboardButton.builder()
                 .text("Edit Message")
-                .callbackData(StringUtil.serialize(new RandomMessageDto()))
+                .callbackData(StringUtil.serialize(new RandomMessageDto(0)))
                 .build()));
 
     sandboxBot.execute(
