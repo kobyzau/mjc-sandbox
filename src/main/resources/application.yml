@@ -1,0 +1,16 @@
+server.port: 8086
+bot:
+  sandbox:
+    username: ${SANDBOX_BOT_USERNAME}
+    token: ${SANDBOX_BOT_TOKEN}
+  payment:
+    token: 381764678:TEST:28108
+api:
+  youtube:
+    token: ${YOUTUBE_TOKEN}
+    pageSize: 10
+mjc:
+  thumbnail:
+    url: https://d3373sevsv1jc.cloudfront.net/uploads/communities_production/community/logo/190/8d2eef20-6aea-4371-8710-217e79cc67c8.png
+  youtube:
+    channelId: UCUFaGUhKgAECPuMZJxXwdbg
